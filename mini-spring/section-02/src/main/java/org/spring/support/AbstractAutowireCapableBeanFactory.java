@@ -5,7 +5,7 @@ import org.spring.BeansException;
 import org.spring.config.BeanDefinition;
 
 /**
- * @description: BeanDefinition 注册表接口
+ * @description:
  * @author: wzh
  * @date: 2023/4/20 17:12
  */

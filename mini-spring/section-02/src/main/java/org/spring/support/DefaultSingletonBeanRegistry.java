@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @description:
+ * @description: 单例模式bean注册
  * @author: wzh
  * @date: 2023/4/20 17:12
  */
