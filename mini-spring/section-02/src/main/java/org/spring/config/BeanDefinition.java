@@ -1,7 +1,7 @@
 package org.spring.config;
 
 /**
- * @description: bean定义
+ * @description:
  * @author: wzh
  * @date: 2023/4/20 17:12
  */

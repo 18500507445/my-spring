@@ -17,11 +17,11 @@ public class AppTest {
         beanFactory.registerBeanDefinition("helloService", beanDefinition);
 
         // 3.第一次获取 bean
-        HelloService userService = (HelloService) beanFactory.getBean("helloService");
-        userService.say();
+        HelloService helloService = (HelloService) beanFactory.getBean("helloService");
+        helloService.say();
 
         // 4.第二次获取 bean from Singleton
-        HelloService userService_singleton = (HelloService) beanFactory.getSingleton("helloService");
-        userService_singleton.say();
+        HelloService helloServiceSingleton = (HelloService) beanFactory.getSingleton("helloService");
+        helloServiceSingleton.say();
     }
 }
