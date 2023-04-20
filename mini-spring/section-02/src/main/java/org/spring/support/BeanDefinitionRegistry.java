@@ -4,7 +4,7 @@ package org.spring.support;
 import org.spring.config.BeanDefinition;
 
 /**
- * @description:
+ * @description: bean定义注册
  * @author: wzh
  * @date: 2023/4/20 17:12
  */
