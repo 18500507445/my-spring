@@ -6,7 +6,7 @@
 
     <groupId>org.spring</groupId>
     <artifactId>mini-dependencies</artifactId>
-    <version>${dependencies.version}</version>
+    <version>1.0-SNAPSHOT</version>
     <description>maven依赖统一管理</description>
     <packaging>pom</packaging>
 
@@ -14,7 +14,6 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <dependencies.version>1.0-SNAPSHOT</dependencies.version>
         <java.version>1.8</java.version>
         <boot.version>2.7.7</boot.version>
 

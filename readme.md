@@ -7,6 +7,8 @@
 ### 组织结构
 ```
 my-spring
+├── mini-common
+├── mini-dependencies
 ├── mini-spring
 ├── mini-spring-boot
 └── mini-spring-cloud
