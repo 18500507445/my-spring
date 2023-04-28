@@ -10,6 +10,12 @@
     </parent>
 
     <artifactId>mini-spring</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>section-01</module>
+        <module>section-02</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

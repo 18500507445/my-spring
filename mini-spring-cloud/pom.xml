@@ -10,11 +10,30 @@
     </parent>
 
     <artifactId>mini-spring-cloud</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>order-service</module>
+        <module>pay-service</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <boot.version>2.7.7</boot.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${boot.version}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
 
 </project>
