@@ -50,7 +50,7 @@ public class PayOrder implements Serializable {
     private String userName;
 
     /**
-     * 订单id、聚合订单id(nt_pay_master_order)
+     * 订单id、聚合订单id
      */
     private String orderId;
 
