@@ -1,0 +1,8 @@
+2023-04-28 22:17:35,895 INFO [PUSH] Task merge for Service{namespace='public', group='DEFAULT_GROUP', name='orderService', ephemeral=true, revision=1}
+
+2023-04-28 22:17:36,427 INFO [PUSH-SUCC] 29ms, all delay time 571ms, SLA 532ms, Service{namespace='public', group='DEFAULT_GROUP', name='orderService', ephemeral=true, revision=1}, originalSize=1, DataSize=1, target=192.168.1.9
+
+2023-04-28 22:19:54,709 INFO [PUSH] Task merge for Service{namespace='public', group='DEFAULT_GROUP', name='payService', ephemeral=true, revision=1}
+
+2023-04-28 22:19:55,226 INFO [PUSH-SUCC] 14ms, all delay time 551ms, SLA 517ms, Service{namespace='public', group='DEFAULT_GROUP', name='payService', ephemeral=true, revision=1}, originalSize=1, DataSize=1, target=192.168.1.9
+

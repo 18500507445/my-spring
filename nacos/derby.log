@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Fri Apr 28 22:17:18 CST 2023:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0187-c839-b5b7-00000f851770 
+on database directory /Users/wangzehui/IdeaProjects/my-spring/nacos/data/derby-data with class loader org.springframework.boot.loader.LaunchedURLClassLoader@5910e440 
+Loaded from jar:file:/Users/wangzehui/IdeaProjects/my-spring/nacos/target/nacos-server.jar!/BOOT-INF/lib/derby-10.14.2.0.jar!/
+java.vendor=Azul Systems, Inc.
+java.runtime.version=1.8.0_362-b09
+user.dir=/Users/wangzehui/IdeaProjects/my-spring/nacos
+os.name=Mac OS X
+os.arch=aarch64
+os.version=13.3.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''

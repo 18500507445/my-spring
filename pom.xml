@@ -10,8 +10,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>mini-dependencies</module>
-        <module>mini-common</module>
         <module>mini-spring</module>
         <module>mini-spring-boot</module>
         <module>mini-spring-cloud</module>
