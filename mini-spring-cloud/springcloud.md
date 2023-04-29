@@ -1,7 +1,7 @@
 ## spring-cloud学习
 
 ### 简介:
-* 基于订单和支付搭建一个spring cloud alibaba项目，引入cloud和alibaba依赖
+* 基于订单和支付业务简单的搭建一个spring cloud alibaba项目
 * [Spring cloud和Alibaba版本对照](https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E)
 ~~~xml
  <dependency>
@@ -21,7 +21,7 @@
 </dependency>
 ~~~
 
-### 1. Nacos（注册和配置中心）
+### 1. Nacos（服务注册和配置中心）
 [注册中心nacos服务端下载](https://github.com/alibaba/nacos)
 
 项目中下载的2.2.2版本，导入项目中，然后添加一个shell script单节点配置
@@ -68,7 +68,7 @@ springcloud
 
 配置动态刷新注解@RefreshScope，@Value取到的值就是动态改变的
 
-### 2.gateway（网关）
+### 2.gateway（网关，路由转发到服务）
 ~~~yml
 spring:
   cloud:
@@ -124,3 +124,34 @@ OrderApplication添加@EnableFeignClients注解开启远程调用
     <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
 </dependency>
 ~~~
+
+#### 5.1 流量控制    
+![](./img/流控.png)  
+流控模式：（1）针对当前接口  （2）当关联接口超阈值会导致当前接口限流（相当于就是别人出错，你背锅）   （3）更细粒度，精确具体方法  
+流控效果：（1）快速失败，直接抛出异常FlowException  （2）预热Warm Up按照预热时长缓慢地进入 （3）排队等待
+
+#### 5.2 异常处理
+~~~yml
+spring:
+  cloud:
+    sentinel:
+      block-page: /api/order/blocked
+~~~
+
+~~~java
+@RequestMapping("/blocked")
+JSONObject blocked() {
+    JSONObject object = new JSONObject();
+    object.put("code", 403);
+    object.put("success", false);
+    object.put("massage", "您的请求频率过快，请稍后再试！");
+    return object;
+}
+~~~
+
+#### 5.3 热点参数限流
+
+
+#### 5.4 服务熔断和降级
+
+#### 5.5 [配置持久化](https://blog.csdn.net/qq_45557455/article/details/125694278?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_utm_term~default-0-125694278-blog-123399569.235^v32^pc_relevant_default_base3&spm=1001.2101.3001.4242.1&utm_relevant_index=3)
