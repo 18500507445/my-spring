@@ -11,3 +11,53 @@
 ![](./img/nacos.jpg)
 
 [启动后访问](http://192.168.1.9:8848/nacos/index.html)
+
+服务pom添加依赖
+~~~xml
+springboot
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-test</artifactId>
+</dependency>
+
+springcloud
+<!-- 注册nacos -->
+<dependency>
+<groupId>com.alibaba.cloud</groupId>
+<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+</dependency>
+
+<!-- 远程调用openfeign -->
+<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+
+<!-- 负载均衡loadbalancer -->
+<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-starter-loadbalancer</artifactId>
+</dependency>
+~~~
+
+orderService需要用到payService的接口，pom引入payService依赖，orderService创建biz目录
+~~~java
+@FeignClient("payService")
+public interface PayOrderClient {
+
+    @RequestMapping("/api/getPayOrder/{id}")
+    PayOrder getPayOrder(@PathVariable("id") Long id);
+}
+~~~
+
+OrderApplication添加@EnableFeignClients注解开启远程调用
