@@ -10,8 +10,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>order-service</module>
-        <module>pay-service</module>
+        <module>order-server</module>
+        <module>pay-server</module>
+        <module>gateway-server</module>
     </modules>
 
     <properties>

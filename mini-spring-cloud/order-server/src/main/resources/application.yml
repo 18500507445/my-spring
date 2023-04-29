@@ -1,0 +1,16 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: orderServer
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #Nacos注册中心地址
+        ephemeral: false  #临时实例
+
+    sentinel:
+      transport:
+        dashboard: localhost:8858 #监控页面地址
