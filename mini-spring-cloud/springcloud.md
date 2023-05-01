@@ -68,7 +68,7 @@ springcloud
 
 配置动态刷新注解@RefreshScope，@Value取到的值就是动态改变的
 
-### 2.gateway（网关，路由转发到服务）
+### 2.Gateway（网关，路由转发到服务）
 ~~~yml
 spring:
   cloud:
@@ -101,7 +101,7 @@ public interface PayOrderClient {
 
 OrderApplication添加@EnableFeignClients注解开启远程调用
 
-### 4.loadbalancer（负载均衡，默认轮询）
+### 4.Loadbalancer（负载均衡，默认轮询）
 ~~~xml
 <dependency>
     <groupId>org.springframework.cloud</groupId>
@@ -150,8 +150,11 @@ JSONObject blocked() {
 ~~~
 
 #### 5.3 热点参数限流
-
+热点规则：针对一个接口中的参数进行策略限流
 
 #### 5.4 服务熔断和降级
 
 #### 5.5 [配置持久化](https://blog.csdn.net/qq_45557455/article/details/125694278?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_utm_term~default-0-125694278-blog-123399569.235^v32^pc_relevant_default_base3&spm=1001.2101.3001.4242.1&utm_relevant_index=3)
+
+### 6. Seata（分布式事务管理）
+常规单体服务， 库存扣减->订单创建 在同一个事物中，可以用Transaction保证，但是微服务的话，按照业务模块进行拆分，库存和订单在不同的服务，事物如何保证
