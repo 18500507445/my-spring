@@ -25,7 +25,7 @@
 [注册中心nacos服务端下载](https://github.com/alibaba/nacos)
 
 项目中下载的2.2.2版本，导入项目中，然后添加一个shell script单节点配置
-![](./img/nacos.jpg)
+![](./img/nacos.png)
 
 [访问地址](http://192.168.1.9:8848/nacos/index.html)
 
@@ -113,7 +113,7 @@ OrderApplication添加@EnableFeignClients注解开启远程调用
 [中文文档](https://sentinelguard.io/zh-cn/docs/introduction.html)
 
 配置启动参数
-![](./img/sentinel.jpg)
+![](./img/sentinel.png)
 
 [访问地址 账号密码：sentinel](http://localhost:8858/#/login)
 
@@ -156,5 +156,59 @@ JSONObject blocked() {
 
 #### 5.5 [配置持久化](https://blog.csdn.net/qq_45557455/article/details/125694278?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_utm_term~default-0-125694278-blog-123399569.235^v32^pc_relevant_default_base3&spm=1001.2101.3001.4242.1&utm_relevant_index=3)
 
-### 6. Seata（分布式事务管理）
+### 6. [Seata（分布式事务管理）](https://seata.io/zh-cn/docs/overview/what-is-seata.html)
 常规单体服务， 库存扣减->订单创建 在同一个事物中，可以用Transaction保证，但是微服务的话，按照业务模块进行拆分，库存和订单在不同的服务，事物如何保证
+
+[客户端下载地址](https://github.com/seata/seata)
+
+~~~xml
+<dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+</dependency>
+~~~
+
+file本地文件类型
+~~~yml
+seata:
+  service:
+    vgroup-mapping:
+        # 这里需要对事务组做映射，默认的分组名为 应用名称-seata-service-group，将其映射到default集群
+        # 这个很关键，一定要配置对，不然会找不到服务
+      orderService-seata-service-group: default
+    grouplist:
+      default: localhost:8868
+~~~
+
+~~~java
+@EnableFeignClients
+@EnableAutoDataSourceProxy
+@SpringBootApplication
+public class OrderApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(OrderApplication.class, args);
+    }
+}
+~~~
+
+Seata会分析修改数据的sql，同时生成对应的反向回滚SQL，这个回滚记录会存放在undo_log 表中。所以要求每一个Client 都有一个对应的undo_log表（也就是说每个服务连接的数据库都需要创建这样一个表
+~~~sql
+CREATE TABLE `undo_log`
+(
+  `id`            BIGINT(20)   NOT NULL AUTO_INCREMENT,
+  `branch_id`     BIGINT(20)   NOT NULL,
+  `xid`           VARCHAR(100) NOT NULL,
+  `context`       VARCHAR(128) NOT NULL,
+  `rollback_info` LONGBLOB     NOT NULL,
+  `log_status`    INT(11)      NOT NULL,
+  `log_created`   DATETIME     NOT NULL,
+  `log_modified`  DATETIME     NOT NULL,
+  `ext`           VARCHAR(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `ux_undo_log` (`xid`, `branch_id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  DEFAULT CHARSET = utf8;
+~~~
+
+接着我们需要在开启分布式事务的方法上添加@GlobalTransactional注解
