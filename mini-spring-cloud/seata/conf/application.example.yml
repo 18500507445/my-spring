@@ -42,8 +42,8 @@ seata:
       password:
       context-path:
       ##if use MSE Nacos with auth, mutex with username/password attribute
-      #access-key:
-      #secret-key:
+      #access-key secret-key:
+      # 这个不用改，默认就行
       data-id: seataServer.properties
     consul:
       server-addr: 127.0.0.1:8500
@@ -74,8 +74,10 @@ seata:
       application: seata-server
       server-addr: 127.0.0.1:8848
       group: SEATA_GROUP
+      # 这里就使用我们上面单独为seata配置的命名空间，注意填的是ID
       namespace:
       cluster: default
+      # Nacos的用户名和密码
       username:
       password:
       context-path:

@@ -1,2 +1,44 @@
-/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home/bin/java  -server -Dloader.path=../lib -Xmx2048m -Xms2048m -Xmn1024m -Xss512k -XX:SurvivorRatio=10 -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m -XX:MaxDirectMemorySize=1024m -XX:-OmitStackTraceInFastThrow -XX:-UseAdaptiveSizePolicy -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/Users/min.ji/Git/github/seata/distribution/logs/java_heapdump.hprof -XX:+DisableExplicitGC -XX:+CMSParallelRemarkEnabled -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=75 -Xloggc:/Users/min.ji/Git/github/seata/distribution/logs/seata_gc.log -verbose:gc -XX:+PrintGCDetails  -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M -Dio.netty.leakDetectionLevel=advanced -Dapp.name=seata-server -Dapp.pid=68288 -Dapp.home=/Users/min.ji/Git/github/seata/distribution -Dbasedir=/Users/min.ji/Git/github/seata/distribution -Dspring.config.location=/Users/min.ji/Git/github/seata/distribution/conf/application.yml -Dlogging.config=/Users/min.ji/Git/github/seata/distribution/conf/logback-spring.xml -jar /Users/min.ji/Git/github/seata/distribution/target/seata-server.jar 
-Error: Unable to access jarfile /Users/min.ji/Git/github/seata/distribution/target/seata-server.jar
+/Library/Java/JavaVirtualMachines/zulu-8.jdk/Contents/Home/bin/java  -server -Dloader.path=/Users/wangzehui/IdeaProjects/my-spring/mini-spring-cloud/seata/lib -Xmx2048m -Xms2048m -Xmn1024m -Xss1m -XX:SurvivorRatio=10 -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=256m -XX:MaxDirectMemorySize=1024m -XX:-OmitStackTraceInFastThrow -XX:-UseAdaptiveSizePolicy -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/Users/wangzehui/IdeaProjects/my-spring/mini-spring-cloud/seata/logs/java_heapdump.hprof -XX:+DisableExplicitGC -Xloggc:/Users/wangzehui/IdeaProjects/my-spring/mini-spring-cloud/seata/logs/seata_gc.log -verbose:gc -XX:+PrintGCDetails  -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M -XX:+UseG1GC -Dio.netty.leakDetectionLevel=advanced -Dapp.name=seata-server -Dapp.pid=58682 -Dapp.home=/Users/wangzehui/IdeaProjects/my-spring/mini-spring-cloud/seata -Dbasedir=/Users/wangzehui/IdeaProjects/my-spring/mini-spring-cloud/seata -Dspring.config.location=/Users/wangzehui/IdeaProjects/my-spring/mini-spring-cloud/seata/conf/application.yml -Dlogging.config=/Users/wangzehui/IdeaProjects/my-spring/mini-spring-cloud/seata/conf/logback-spring.xml -jar /Users/wangzehui/IdeaProjects/my-spring/mini-spring-cloud/seata/target/seata-server.jar -p 8868
+███████╗███████╗ █████╗ ████████╗ █████╗
+██╔════╝██╔════╝██╔══██╗╚══██╔══╝██╔══██╗
+███████╗█████╗  ███████║   ██║   ███████║
+╚════██║██╔══╝  ██╔══██║   ██║   ██╔══██║
+███████║███████╗██║  ██║   ██║   ██║  ██║
+╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝
+
+
+22:22:50.957  INFO --- [                     main] io.seata.server.ServerApplication        : Starting ServerApplication v1.6.1 using Java 1.8.0_362 on 192.168.1.9 with PID 58699 (/Users/wangzehui/IdeaProjects/my-spring/mini-spring-cloud/seata/target/seata-server.jar started by wangzehui in /Users/wangzehui/IdeaProjects/my-spring/mini-spring-cloud/seata)
+22:22:50.959  INFO --- [                     main] io.seata.server.ServerApplication        : No active profile set, falling back to 1 default profile: "default"
+22:22:52.106  INFO --- [                     main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 7091 (http)
+22:22:52.117  INFO --- [                     main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-7091"]
+22:22:52.118  INFO --- [                     main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+22:22:52.118  INFO --- [                     main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+22:22:52.185  INFO --- [                     main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+22:22:52.185  INFO --- [                     main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1192 ms
+22:22:52.794  INFO --- [                     main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+22:22:53.025  WARN --- [                     main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+22:22:53.025  INFO --- [                     main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/'] with []
+22:22:53.025  WARN --- [                     main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**/*.css']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+22:22:53.026  INFO --- [                     main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/**/*.css'] with []
+22:22:53.026  WARN --- [                     main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**/*.js']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+22:22:53.026  INFO --- [                     main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/**/*.js'] with []
+22:22:53.026  WARN --- [                     main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**/*.html']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+22:22:53.026  INFO --- [                     main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/**/*.html'] with []
+22:22:53.026  WARN --- [                     main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**/*.map']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+22:22:53.026  INFO --- [                     main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/**/*.map'] with []
+22:22:53.026  WARN --- [                     main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**/*.svg']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+22:22:53.026  INFO --- [                     main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/**/*.svg'] with []
+22:22:53.027  WARN --- [                     main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**/*.png']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+22:22:53.027  INFO --- [                     main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/**/*.png'] with []
+22:22:53.027  WARN --- [                     main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/**/*.ico']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+22:22:53.027  INFO --- [                     main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/**/*.ico'] with []
+22:22:53.027  WARN --- [                     main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/console-fe/public/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+22:22:53.027  INFO --- [                     main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/console-fe/public/**'] with []
+22:22:53.028  WARN --- [                     main] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore Ant [pattern='/api/v1/auth/login']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+22:22:53.028  INFO --- [                     main] o.s.s.web.DefaultSecurityFilterChain     : Will secure Ant [pattern='/api/v1/auth/login'] with []
+22:22:53.046  INFO --- [                     main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure any request
+22:22:53.077  INFO --- [                     main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-7091"]
+22:22:53.093  INFO --- [                     main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 7091 (http) with context path ''
+22:22:53.101  INFO --- [                     main] io.seata.server.ServerApplication        : Started ServerApplication in 2.897 seconds (JVM running for 3.338)
+22:22:53.253  INFO --- [                     main] i.s.core.rpc.netty.NettyServerBootstrap  : Server started, service listen port: 8868
+22:22:53.263  INFO --- [                     main] io.seata.server.ServerRunner             : seata server started in 161 millSeconds

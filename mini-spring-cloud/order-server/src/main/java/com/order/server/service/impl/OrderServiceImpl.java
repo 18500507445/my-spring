@@ -5,6 +5,7 @@ import com.order.server.client.PayClient;
 import com.order.server.entity.Order;
 import com.order.server.service.OrderService;
 import com.pay.server.entity.PayOrder;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class OrderServiceImpl implements OrderService {
     private PayClient payClient;
 
     @Override
+    @GlobalTransactional
     public Order getOrder(Long id) {
         final PayOrder payOrder = payClient.getPayOrder(id);
         log.info("payClient:{}", JSONObject.toJSONString(payOrder));

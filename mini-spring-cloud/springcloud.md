@@ -156,10 +156,13 @@ JSONObject blocked() {
 
 #### 5.5 [配置持久化](https://blog.csdn.net/qq_45557455/article/details/125694278?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_utm_term~default-0-125694278-blog-123399569.235^v32^pc_relevant_default_base3&spm=1001.2101.3001.4242.1&utm_relevant_index=3)
 
-### 6. [Seata（分布式事务管理）](https://seata.io/zh-cn/docs/overview/what-is-seata.html)
+### 6. [Seata（分布式事务管理，以order-server服务为例）](https://seata.io/zh-cn/docs/overview/what-is-seata.html)
 常规单体服务， 库存扣减->订单创建 在同一个事物中，可以用Transaction保证，但是微服务的话，按照业务模块进行拆分，库存和订单在不同的服务，事物如何保证
 
 [客户端下载地址](https://github.com/seata/seata)
+
+本地配置启动，注意：修改bin目录seata-server.sh jvm参数-Xss改成1M否则启动失败
+![](./img/seata.png)
 
 ~~~xml
 <dependency>
@@ -211,4 +214,83 @@ CREATE TABLE `undo_log`
   DEFAULT CHARSET = utf8;
 ~~~
 
-接着我们需要在开启分布式事务的方法上添加@GlobalTransactional注解
+接着我们需要在开启分布式事务的方法上添加@GlobalTransactional注解即可
+
+启动服务观察log
+~~~
+2023-05-01 22:28:09.525  INFO 58961 --- [           main] i.s.s.a.GlobalTransactionScanner         : Initializing Global Transaction Clients ... 
+2023-05-01 22:28:09.589  INFO 58961 --- [           main] i.s.s.a.GlobalTransactionScanner         : Transaction Manager Client is initialized. applicationId[orderServer] txServiceGroup[default_tx_group]
+2023-05-01 22:28:09.598  INFO 58961 --- [           main] i.s.s.a.GlobalTransactionScanner         : Resource Manager is initialized. applicationId[orderServer] txServiceGroup[default_tx_group]
+2023-05-01 22:28:09.598  INFO 58961 --- [           main] i.s.s.a.GlobalTransactionScanner         : Global Transaction Clients are initialized. 
+2023-05-01 22:28:10.055  INFO 58961 --- [           main] i.s.s.a.GlobalTransactionScanner         : Bean[com.order.server.service.impl.OrderServiceImpl] with name [orderServiceImpl] would use interceptor [io.seata.spring.annotation.GlobalTransactionalInterceptor]
+~~~
+
+#### 6.1 使用Nacos模式部署
+首先Nacos中创建命名空间，稍后会使用命名空间ID
+![](./img/命名空间.png)
+
+然后找到seata.conf目录，参考application.example.yml然后替换application.yml配置
+~~~yml
+seata:
+  config:
+    # support: nacos 、 consul 、 apollo 、 zk  、 etcd3
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace:
+      group: SEATA_GROUP
+      username:
+      password:
+      context-path:
+      # 这个不用改，默认就行
+      data-id: seataServer.properties
+  registry:
+    # support: nacos 、 eureka 、 redis 、 zk  、 consul 、 etcd3 、 sofa
+    type: nacos
+    preferred-networks: 30.240.*
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      # 这里就使用我们上面单独为seata配置的命名空间，注意填的是ID
+      namespace:
+      cluster: default
+      # Nacos的用户名和密码
+      username:
+      password:
+      context-path:
+      ##if use MSE Nacos with auth, mutex with username/password attribute
+~~~
+
+找到源码文件，解压后找到script/config-center/nacos/nacos-config-interactive.sh  
+![](./img/seata源码.png)
+
+终端执行    
+![](./img/seata源码执行.png)
+
+然后再Nacos后台看到  
+![](./img/nacos-seata配置.png)
+
+新建一个配置  
+![](./img/seata-nacos配置格式.png)
+
+最后yml文件配置，就可以启动啦
+~~~yml
+seata:
+  # 注册
+  registry:
+    # 使用Nacos
+    type: nacos
+    nacos:
+      # 使用Seata的命名空间，这样才能正确找到Seata服务，由于组使用的是SEATA_GROUP，配置默认值就是，就不用配了
+      namespace: a7be9896-1252-41d3-8e9a-96bf83c967b4
+      username: nacos
+      password: nacos
+  # 配置
+  config:
+    type: nacos
+    nacos:
+      namespace: a7be9896-1252-41d3-8e9a-96bf83c967b4
+      username: nacos
+      password: nacos
+~~~
